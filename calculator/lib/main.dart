@@ -84,11 +84,12 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
       appBar: AppBar(
         title: Text('Calculadora'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          Expanded(
-            child: Container(
+      body: LayoutBuilder(builder: (context, constraints) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Container(
+              height: constraints.maxHeight * .3,
               padding: EdgeInsets.symmetric(vertical: 24, horizontal: 12),
               alignment: Alignment.bottomRight,
               child: Column(
@@ -113,114 +114,114 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
                 ],
               ),
             ),
-          ),
-          Divider(height: 1),
-          Container(
-            height: MediaQuery.of(context).size.height / 2,
-            child: GridView.count(
-              crossAxisCount: 4,
-              children: <Widget>[
-                CalculatorButton(
-                  text: 'C',
-                  textColor: Colors.white,
-                  backgroundColor: Colors.grey,
-                  onPressed: () {},
-                ),
-                CalculatorButton(
-                  text: '⌫',
-                  textColor: Colors.white,
-                  backgroundColor: Colors.grey,
-                  onPressed: () {},
-                ),
-                CalculatorButton(
-                  text: '%',
-                  textColor: Colors.white,
-                  backgroundColor: Colors.grey,
-                  onPressed: () {},
-                ),
-                CalculatorButton(
-                  text: '÷',
-                  textColor: Colors.white,
-                  backgroundColor: Colors.orange,
-                  onPressed: () {},
-                ),
-                CalculatorButton(
-                  text: '7',
-                  onPressed: () {},
-                ),
-                CalculatorButton(
-                  text: '8',
-                  onPressed: () {},
-                ),
-                CalculatorButton(
-                  text: '9',
-                  onPressed: () {},
-                ),
-                CalculatorButton(
-                  text: '×',
-                  textColor: Colors.white,
-                  backgroundColor: Colors.orange,
-                  onPressed: () {},
-                ),
-                CalculatorButton(
-                  text: '4',
-                  onPressed: () {},
-                ),
-                CalculatorButton(
-                  text: '5',
-                  onPressed: () {},
-                ),
-                CalculatorButton(
-                  text: '6',
-                  onPressed: () {},
-                ),
-                CalculatorButton(
-                  text: '-',
-                  textColor: Colors.white,
-                  backgroundColor: Colors.orange,
-                  onPressed: () {},
-                ),
-                CalculatorButton(
-                  text: '1',
-                  onPressed: () {},
-                ),
-                CalculatorButton(
-                  text: '2',
-                  onPressed: () {},
-                ),
-                CalculatorButton(
-                  text: '3',
-                  onPressed: () {},
-                ),
-                CalculatorButton(
-                  text: '+',
-                  textColor: Colors.white,
-                  backgroundColor: Colors.orange,
-                  onPressed: () {},
-                ),
-                CalculatorButton(
-                  text: '±',
-                  onPressed: () {},
-                ),
-                CalculatorButton(
-                  text: '0',
-                  onPressed: () {},
-                ),
-                CalculatorButton(
-                  text: '.',
-                  onPressed: () {},
-                ),
-                CalculatorButton(
-                  text: '=',
-                  textColor: Colors.white,
-                  backgroundColor: Colors.orange,
-                  onPressed: () {},
-                ),
-              ],
+            Divider(height: 1),
+            Container(
+              height: constraints.maxHeight * .7 - 1,
+              child: GridView.count(
+                crossAxisCount: 4,
+                children: <Widget>[
+                  CalculatorButton(
+                    text: 'C',
+                    textColor: Colors.white,
+                    backgroundColor: Colors.grey,
+                    onPressed: () {},
+                  ),
+                  CalculatorButton(
+                    text: '⌫',
+                    textColor: Colors.white,
+                    backgroundColor: Colors.grey,
+                    onPressed: () {},
+                  ),
+                  CalculatorButton(
+                    text: '%',
+                    textColor: Colors.white,
+                    backgroundColor: Colors.grey,
+                    onPressed: () {},
+                  ),
+                  CalculatorButton(
+                    text: '÷',
+                    textColor: Colors.white,
+                    backgroundColor: Colors.orange,
+                    onPressed: () {},
+                  ),
+                  CalculatorButton(
+                    text: '7',
+                    onPressed: () {},
+                  ),
+                  CalculatorButton(
+                    text: '8',
+                    onPressed: () {},
+                  ),
+                  CalculatorButton(
+                    text: '9',
+                    onPressed: () {},
+                  ),
+                  CalculatorButton(
+                    text: '×',
+                    textColor: Colors.white,
+                    backgroundColor: Colors.orange,
+                    onPressed: () {},
+                  ),
+                  CalculatorButton(
+                    text: '4',
+                    onPressed: () {},
+                  ),
+                  CalculatorButton(
+                    text: '5',
+                    onPressed: () {},
+                  ),
+                  CalculatorButton(
+                    text: '6',
+                    onPressed: () {},
+                  ),
+                  CalculatorButton(
+                    text: '-',
+                    textColor: Colors.white,
+                    backgroundColor: Colors.orange,
+                    onPressed: () {},
+                  ),
+                  CalculatorButton(
+                    text: '1',
+                    onPressed: () {},
+                  ),
+                  CalculatorButton(
+                    text: '2',
+                    onPressed: () {},
+                  ),
+                  CalculatorButton(
+                    text: '3',
+                    onPressed: () {},
+                  ),
+                  CalculatorButton(
+                    text: '+',
+                    textColor: Colors.white,
+                    backgroundColor: Colors.orange,
+                    onPressed: () {},
+                  ),
+                  CalculatorButton(
+                    text: '±',
+                    onPressed: () {},
+                  ),
+                  CalculatorButton(
+                    text: '0',
+                    onPressed: () {},
+                  ),
+                  CalculatorButton(
+                    text: '.',
+                    onPressed: () {},
+                  ),
+                  CalculatorButton(
+                    text: '=',
+                    textColor: Colors.white,
+                    backgroundColor: Colors.orange,
+                    onPressed: () {},
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
+          ],
+        );
+      }),
     );
   }
 }

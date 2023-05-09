@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 class BluetoothModel with ChangeNotifier {
-  String serverAddress;
+  String? serverAddress;
   late BluetoothConnection? connection;
   String _messageBuffer = '';
 
@@ -16,11 +16,16 @@ class BluetoothModel with ChangeNotifier {
 
   List<MessageModel> messages = List<MessageModel>.empty(growable: true);
 
-  BluetoothModel({required this.serverAddress}) {
-    connect();
+  BluetoothModel({this.serverAddress, existingConnection}) {
+    if (existingConnection != null) {
+      connection = existingConnection;
+    } else {
+      connect();
+    }
+    notifyListeners();
   }
 
-  connect() {
+  connect({existingConnection}) {
     BluetoothConnection.toAddress(serverAddress).then((_connection) {
       print('Connected to the device');
       connection = _connection;
@@ -56,7 +61,7 @@ class BluetoothModel with ChangeNotifier {
 
     if (text.isNotEmpty) {
       try {
-        connection!.output.add(Uint8List.fromList(utf8.encode(text)));
+        connection!.output.add(Uint8List.fromList(utf8.encode("$text")));
         await connection!.output.allSent;
 
         messages.add(MessageModel(0, text));

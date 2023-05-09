@@ -4,27 +4,30 @@ import 'package:flutter/material.dart';
 class MainDrawer extends StatelessWidget {
   const MainDrawer({super.key});
 
-  Widget _createItem(IconData icon, String label, void Function() onTap) {
-    return ListTile(
-      leading: Icon(
-        icon,
-        size: 26,
-      ),
-      title: Text(
-        label,
-        style: TextStyle(
-          fontFamily: 'RobotoCondensed',
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      onTap: onTap,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    Widget _createItem(IconData icon, String label, void Function() onTap) {
+      return ListTile(
+        leading: Icon(
+          icon,
+          size: 26,
+          color: Theme.of(context).colorScheme.secondary,
+        ),
+        title: Text(
+          label,
+          style: TextStyle(
+            fontFamily: 'RobotoCondensed',
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+        ),
+        onTap: onTap,
+      );
+    }
+
     return Drawer(
+      backgroundColor: Theme.of(context).colorScheme.primary,
       child: Column(
         children: [
           Container(
@@ -34,7 +37,7 @@ class MainDrawer extends StatelessWidget {
             color: Theme.of(context).colorScheme.secondary,
             alignment: Alignment.bottomRight,
             child: Text(
-              'Controle bluetooth?',
+              'Controle bluetooth',
               style: TextStyle(
                 fontWeight: FontWeight.w900,
                 fontSize: 30,
@@ -44,7 +47,7 @@ class MainDrawer extends StatelessWidget {
           ),
           SizedBox(height: 20),
           _createItem(
-            Icons.restaurant,
+            Icons.home,
             'Home',
             () => Navigator.of(context).pushReplacementNamed(AppRoutes.home),
           ),

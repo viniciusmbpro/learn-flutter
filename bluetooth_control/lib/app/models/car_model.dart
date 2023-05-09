@@ -5,7 +5,7 @@ class CarModel {
   CarModel({required this.speed, required this.direction});
 
   String convertDataToMessage() {
-    String message = "$direction${speed.toString()}";
+    String message = "$direction";
     return message;
   }
 }

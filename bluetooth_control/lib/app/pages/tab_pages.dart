@@ -56,6 +56,9 @@ class _TabsScreenState extends State<TabsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: MainDrawer(),
+      appBar: AppBar(
+        title: Text(_screens[_selectedScreenIndex]['title'].toString()),
+      ),
       body: _screens[_selectedScreenIndex]['screen'] as Widget,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectScreen,

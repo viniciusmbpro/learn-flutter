@@ -68,15 +68,8 @@ class _JoystickScreenState extends State<JoystickScreen> {
                   mode: JoystickMode.vertical,
                   listener: (details) {
                     setState(() {
-                      // _x = _x + step * details.x;
-                      // _y = _y + step * details.y;
                       joystickController.y = details.y;
                       joystickController.converteToSpeedDirection();
-                      print("=" * 100);
-                      print(joystickController.carController.car
-                          .convertDataToMessage());
-                      print(
-                          "${joystickController.y} - ${joystickController.x}");
                     });
                   },
                 ),
@@ -87,6 +80,7 @@ class _JoystickScreenState extends State<JoystickScreen> {
                   listener: (details) {
                     setState(() {
                       joystickController.x = details.x;
+                      joystickController.converteToSpeedDirection();
                     });
                   },
                 ),

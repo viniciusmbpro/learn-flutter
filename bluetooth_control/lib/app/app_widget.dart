@@ -23,10 +23,9 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         title: 'Bluetooth control',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
           colorScheme: ThemeData().colorScheme.copyWith(
-                primary: Color.fromARGB(255, 39, 39, 39),
-                secondary: Color.fromARGB(255, 255, 174, 0),
+                primary: Color.fromARGB(255, 24, 24, 24),
+                secondary: Color.fromARGB(255, 255, 208, 0),
               ),
           textTheme: ThemeData.light().textTheme.copyWith(
                 titleSmall: TextStyle(

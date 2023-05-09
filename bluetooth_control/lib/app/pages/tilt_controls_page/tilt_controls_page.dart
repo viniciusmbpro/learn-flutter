@@ -50,7 +50,6 @@ class _TiltControlsPageState extends State<TiltControlsPage> {
             height: 100,
             width: MediaQuery.of(context).size.width,
             color: Theme.of(context).colorScheme.primary,
-            margin: EdgeInsets.all(20),
             padding: EdgeInsets.all(10),
             child: Text(
               "AccelerometerEvent:\nX: ${varAccelerometerEvent.x}\nY: ${varAccelerometerEvent.y}\nZ: ${varAccelerometerEvent.z}",
@@ -61,7 +60,7 @@ class _TiltControlsPageState extends State<TiltControlsPage> {
             ),
           ),
           Container(
-            height: MediaQuery.of(context).size.height * 0.7,
+            height: MediaQuery.of(context).size.height - 230,
             width: MediaQuery.of(context).size.width,
             child: Stack(
               children: [

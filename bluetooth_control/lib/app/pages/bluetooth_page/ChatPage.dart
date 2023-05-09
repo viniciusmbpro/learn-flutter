@@ -85,7 +85,7 @@ class _ChatPage extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<CarController>(context).getConnection(connection);
+    Provider.of<CarController>(context).setConnection(connection);
 
     final List<Row> list = messages.map((_message) {
       return Row(

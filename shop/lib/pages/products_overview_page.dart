@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/components/app_drawer.dart';
-import 'package:shop/components/badgeNew.dart';
+import 'package:shop/components/badge.dart';
 import 'package:shop/components/product_grid.dart';
 import 'package:shop/models/cart.dart';
 import 'package:shop/models/product_list.dart';
@@ -21,6 +21,20 @@ class ProductsOverviewPage extends StatefulWidget {
 
 class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
   bool _showFavoriteOnly = false;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<ProductList>(
+      context,
+      listen: false,
+    ).loadProducts().then((value) {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +43,16 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
         title: const Text('Minha Loja'),
         actions: [
           PopupMenuButton(
+            icon: const Icon(Icons.more_vert),
             itemBuilder: (_) => [
-              PopupMenuItem(
-                child: Text('Somente favoritos'),
+              const PopupMenuItem(
                 value: FilterOptions.favorite,
+                child: Text('Somente Favoritos'),
               ),
-              PopupMenuItem(
-                child: Text('Todos'),
+              const PopupMenuItem(
                 value: FilterOptions.all,
-              )
+                child: Text('Todos'),
+              ),
             ],
             onSelected: (FilterOptions selectedValue) {
               setState(() {
@@ -54,7 +69,7 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
               onPressed: () {
                 Navigator.of(context).pushNamed(AppRoutes.cart);
               },
-              icon: Icon(Icons.shopping_cart),
+              icon: const Icon(Icons.shopping_cart),
             ),
             builder: (ctx, cart, child) => BadgeNew(
               value: cart.itemsCount.toString(),
@@ -63,8 +78,10 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
           ),
         ],
       ),
-      body: ProductGrid(showFavoriteOnly: _showFavoriteOnly),
-      drawer: AppDrawer(),
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : ProductGrid(_showFavoriteOnly),
+      drawer: const AppDrawer(),
     );
   }
 }
